@@ -1,0 +1,104 @@
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<style>
+  body {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    background: steelblue;
+    border-radius: 20px;
+    height: 7em;
+    width: 7em;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    border: none;
+  }
+
+  #stopTimer:hover {
+    background-color: red;
+
+  }
+
+  #starTimer:hover {
+    background-color: green;
+  }
+
+  #box:hover {
+    background-color: brown;
+  }
+
+  #box {
+    background: steelblue;
+    border-radius: 20px;
+    height: 4em;
+    width: 7em;
+    color: rgb(255, 184, 184);
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
+
+  .button:active {
+    background-color: hotpink;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  #StartandStop {
+    margin-top: 5px;
+  }
+
+  #box2 {
+    margin-top: 20%;
+    display: grid;
+    grid-auto-flow: column;
+  }
+</style>
+
+<body align='middle'>
+  <div id="box">
+    <div id="box2">
+      <span id="hour">00</span>: <span id="minutes">00</span> : <span id="seconds">00</span>
+    </div>
+  </div>
+
+  <div id="StartandStop">
+    <button id="starTimer" onclick="startTime()">Start time</button>
+
+    <button id="stopTimer" onclick="clearInterval(timerVar)">Stop time</button>
+  </div>
+  <script>
+
+    var totalSeconds = 0;
+    function countTimer() {
+      ++totalSeconds;
+      var hour = Math.floor(totalSeconds / 3600);
+      var minute = Math.floor((totalSeconds - hour * 3600) / 60);
+      var seconds = totalSeconds - (hour * 3600 + minute * 60);
+      if (hour < 10)
+        hour = "0" + hour;
+      if (minute < 10)
+        minute = "0" + minute;
+      if (seconds < 10)
+        seconds = "0" + seconds;
+      document.getElementById("hour").innerHTML = hour;
+      document.getElementById('minutes').innerHTML = minute;
+      document.getElementById('seconds').innerHTML = seconds;
+    }
+    var timerVar;
+    function startTime() {
+      timerVar = setInterval(countTimer, 1000);
+    }
+  </script>
+</body>
+
+</html>
